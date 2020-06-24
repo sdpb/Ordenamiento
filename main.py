@@ -2,7 +2,7 @@ from clases import *
 from simular import *
 from ordenar import *
 
-from time import time
+from time import time, gmtime, strftime
 from numpy import arange
 import matplotlib.pyplot as plt
 
@@ -65,4 +65,5 @@ if __name__ == "__main__":
     plt.xlabel('# DATA')
     plt.ylabel('TIME')
     leg = ax.legend()
+    plt.savefig('Pictures/{}'.format(strftime("%d - %H:%M:%S", gmtime())))
     plt.show()
