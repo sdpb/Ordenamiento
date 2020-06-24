@@ -5,33 +5,30 @@ sys.setrecursionlimit(15000)
 
 # ===[BUBBLE SORT]===============================================
 
-
 def bubble_sort(datos, campo, ascendente):
     for nCiclo in range(len(datos) - 1, 0, -1):
         for i in range(nCiclo):
-            if campo == "nombre":
-                if ascendente:
-                    if datos[i].nombre > datos[i + 1].nombre:
-                        temp = datos[i]
-                        datos[i] = datos[i + 1]
-                        datos[i + 1] = temp
-                else:
-                    if datos[i].nombre < datos[i + 1].nombre:
-                        temp = datos[i]
-                        datos[i] = datos[i + 1]
-                        datos[i + 1] = temp
+            if campo == "nombre" and ascendente:
+                if datos[i].nombre > datos[i + 1].nombre:
+                    temp = datos[i]
+                    datos[i] = datos[i + 1]
+                    datos[i + 1] = temp
+            else:
+                if datos[i].nombre < datos[i + 1].nombre:
+                    temp = datos[i]
+                    datos[i] = datos[i + 1]
+                    datos[i + 1] = temp
 
-            if campo == "edad":
-                if ascendente:
-                    if int(datos[i].edad) > int(datos[i + 1].edad):
-                        temp = datos[i]
-                        datos[i] = datos[i + 1]
-                        datos[i + 1] = temp
-                else:
-                    if int(datos[i].edad) < int(datos[i + 1].edad):
-                        temp = datos[i]
-                        datos[i] = datos[i + 1]
-                        datos[i + 1] = temp
+            if campo == "edad" and ascendente:
+                if int(datos[i].edad) > int(datos[i + 1].edad):
+                    temp = datos[i]
+                    datos[i] = datos[i + 1]
+                    datos[i + 1] = temp
+            else:
+                if int(datos[i].edad) < int(datos[i + 1].edad):
+                    temp = datos[i]
+                    datos[i] = datos[i + 1]
+                    datos[i + 1] = temp
     return datos
 
 
@@ -121,17 +118,16 @@ def quick_sort(array, start, end):
 def quick_sort_2(data, criteria, ascendant):
     if len(data) <= 1:
         return data
-    pivot = data[len(data) // 2]
+    pivot_C = data[len(data) // 2]
     if criteria == "edad":
-        change(data, criteria, data.edad, pivot.edad, ascendant)
+        dataLeft = [_ for _ in data if _.edad < pivot_C.edad]
+        dataMiddle = [_ for _ in data if _.edad == pivot_C.edad]
+        dataRight = [_ for _ in data if _.edad > pivot_C.edad]
+
     elif criteria == "nombre":
-        change(data, criteria, data.name, pivot.edad, ascendant)
-
-
-def change(data, criteria, data_C, pivot_C, ascendant):
-
-    dataLeft = [data for data in data if data_C < pivot_C]
-    dataMiddle = [data for data in data if data_C == pivot_C]
-    dataRight = [data for data in data if data_C > pivot_C]
+        dataLeft = [_ for _ in data if _.nombre < pivot_C.nombre]
+        dataMiddle = [_ for _ in data if _.nombre == pivot_C.nombre]
+        dataRight = [_ for _ in data if _.nombre > pivot_C.nombre]
+    else:
+        return []
     return quick_sort_2(dataLeft, criteria, ascendant) + dataMiddle + quick_sort_2(dataRight, criteria, ascendant)
-

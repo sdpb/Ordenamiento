@@ -54,7 +54,7 @@ def quickTime2(x_list):
 
 # Run
 if __name__ == "__main__":
-    x = arange(0, 100, 3)
+    x = arange(0, 300, 3)
     generator(x)
 
     fig, ax = plt.subplots()

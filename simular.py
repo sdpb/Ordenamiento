@@ -30,19 +30,19 @@ apellido = ['MARTINEZ', 'LOPEZ', 'SANCHEZ', 'GONZALEZ', 'GOMEZ',
 
 
 def generarNombre(genero):
-    nombre = ""
-    if genero == 'F':
+    if genero == 'F' or genero == 'f':
         nombre = random.choice(mujer)
-    else:
+    elif genero == 'M' or genero == 'm':
         nombre = random.choice(hombre)
+    else:
+        nombre = 'PEPITO'
     apellido1 = random.choice(apellido)
     apellido2 = random.choice(apellido)
-    nombre = nombre + " " + apellido1 + " " + apellido2
-    return nombre
+    return "{} {} {}".format(nombre, apellido1, apellido2)
 
 
 def generarEdad():
-    # edadas entre 18 y 85
+    # edades entre 18 y 85
     return random.randint(18, 85)
 
 
